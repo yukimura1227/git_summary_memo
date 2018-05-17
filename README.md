@@ -11,7 +11,6 @@ gitの集計をした時のメモ書き
 ```
 git checkout master
 git pull
-git log | head
 find ./ -type f | xargs -n1 git blame --date short > $(git rev-parse --short HEAD)_blame.txt
 # specだけを対象にする場合の例
 # find ./spec -type f | xargs -n1 git blame --date short > $(git rev-parse --short HEAD)_spec_blame.txt
@@ -24,4 +23,19 @@ find ./ -type f | xargs -n1 git blame --date short > $(git rev-parse --short HEA
 
 ```
 ruby analyze_blame_file.rb tmp/xxxxxxxx_blame.txt
+```
+
+### git log --numstatの結果を集計する
+
+```
+git checkout master
+git pull
+git log --since "2018-03-01 00:00:00" --no-merges --numstat --date=short --decorate=short --pretty=format:'commit-----"%h"-----"%cd"------"%cn"-----"%d"-----"%s"' > $(git rev-parse --short HEAD)_numstat_log.txt
+
+# specだけを対象にする場合の例
+# git log --since "2018-03-01 00:00:00" --no-merges --numstat --date=short --decorate=short --pretty=format:'commit-----"%h"-----"%cd"------"%cn"-----"%d"-----"%s"' -- spec/ > $(git rev-parse --short HEAD)_numstat_log_since_20180301.txt
+```
+
+```
+ruby analyze_numstat_log_file.rb tmp/xxxxxx_numstat_log_since_20180301.txt
 ```
