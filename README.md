@@ -42,3 +42,8 @@ git log --since "${SINCE_DATE} 00:00:00" --no-merges --numstat --date=short --de
 ```
 ruby numstat_log_file_analyze.rb tmp/xxxxxx_numstat_log_since_20180301.txt
 ```
+
+### コミットユーザごとのコミット回数を数える。
+authors=(hoge fuga)
+SINCE_DATE=2019-03-01
+for author in ${authors[@]}; do echo "${author} $(git log --since=${SINCE_DATE} --author=${author} --oneline --no-merges | wc -l)"; done
