@@ -19,10 +19,10 @@ find ./ -type f | xargs -n1 git blame --date short > $(git rev-parse --short HEA
 # find ./spec -type f | xargs -n1 git blame --date short --since '2018-03-01 00:00:00' | grep -v ^\^ > $(git rev-parse --short HEAD)_spec_blame_since_20180301.txt
 ```
 
-#### analyze_blame_file.rbを実行する
+#### blame_file_analyze.rbを実行する
 
 ```
-ruby analyze_blame_file.rb tmp/xxxxxxxx_blame.txt
+ruby blame_file_analyze.rb tmp/xxxxxxxx_blame.txt
 ```
 
 ### git log --numstatの結果を集計する
@@ -40,5 +40,5 @@ git log --since "${SINCE_DATE} 00:00:00" --no-merges --numstat --date=short --de
 ```
 
 ```
-ruby analyze_numstat_log_file.rb tmp/xxxxxx_numstat_log_since_20180301.txt
+ruby numstat_log_file_analyze.rb tmp/xxxxxx_numstat_log_since_20180301.txt
 ```
