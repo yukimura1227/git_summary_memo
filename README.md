@@ -30,10 +30,13 @@ ruby analyze_blame_file.rb tmp/xxxxxxxx_blame.txt
 ```
 git checkout master
 git pull
-git log --since "2019-03-01 00:00:00" --no-merges --numstat --date=short --decorate=short --pretty=format:'commit-----"%h"-----"%cd"-----"%cn"-----"%d"-----"%s"' > $(basename `pwd`)_$(git rev-parse --short HEAD)_numstat_log.txt
+SINCE_DATE=2019-03-01
+git log --since "${SINCE_DATE} 00:00:00" --no-merges --numstat --date=short --decorate=short --pretty=format:'commit-----"%h"-----"%cd"-----"%cn"-----"%d"-----"%s"' > $(basename `pwd`)_$(git rev-parse --short HEAD)_numstat_log_since_${SINCE_DATE//-/}.txt
 
 # specだけを対象にする場合の例
-# git log --since "2019-03-01 00:00:00" --no-merges --numstat --date=short --decorate=short --pretty=format:'commit-----"%h"-----"%cd"-----"%cn"-----"%d"-----"%s"' -- spec/ > $(basename `pwd`)_$(git rev-parse --short HEAD)_numstat_log_since_20180301.txt
+SINCE_DATE=2019-03-01
+FILTER=spec/
+git log --since "${SINCE_DATE} 00:00:00" --no-merges --numstat --date=short --decorate=short --pretty=format:'commit-----"%h"-----"%cd"-----"%cn"-----"%d"-----"%s"' -- ${FILTER} > $(basename `pwd`)_$(git rev-parse --short HEAD)_numstat_log_since_${SINCE_DATE}_only_${FILTER//\//_}.txt
 ```
 
 ```
