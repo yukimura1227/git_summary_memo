@@ -29,6 +29,10 @@ ruby blame_file_analyze.rb tmp/xxxxxxxx_blame.txt
 
 collect_numstat.shを参考にしてください
 
+```
+sh collect_numstat.sh 2>/dev/null
+```
+
 ### コミットユーザごとのコミット回数を数える。
 authors=(hoge fuga)
 SINCE_DATE=2019-09-01

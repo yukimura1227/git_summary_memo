@@ -19,6 +19,7 @@ File.open(target_file) do |file|
     end
   end
 
+  puts '=' * 10 + target_file + '=' * 10
   summary_result.each do |author, value|
     puts "#{author} => #{value}"
   end
